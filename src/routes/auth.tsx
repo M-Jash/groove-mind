@@ -6,15 +6,18 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GlassCard } from "@/components/GlassCard";
-import { Sparkles, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { z } from "zod";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Sign in — Sonogram" },
-      { name: "description", content: "Sign in or create an account to classify your music with Sonogram." },
+      { title: "Sign in — CheckVibe" },
+      {
+        name: "description",
+        content: "Sign in or create an account to classify your music with CheckVibe.",
+      },
     ],
   }),
   component: AuthPage,
@@ -77,16 +80,18 @@ function AuthPage() {
   return (
     <div className="min-h-screen grid place-items-center px-4 py-16">
       <div className="w-full max-w-md">
-        <Link to="/" className="flex items-center gap-2 justify-center mb-8">
-          <div className="w-11 h-11 rounded-xl bg-[image:var(--gradient-primary)] grid place-items-center glow">
-            <Sparkles className="w-5 h-5 text-primary-foreground" />
+        <Link to="/" className="flex items-center gap-3 justify-center mb-8">
+          <div className="w-10 h-10 rounded-full bg-foreground grid place-items-center">
+            <div className="w-3 h-3 rounded-full bg-background" />
           </div>
-          <span className="font-display font-bold text-2xl">Sonogram</span>
+          <span className="font-display font-bold text-2xl">
+            check<span className="italic font-light">vibe</span>
+          </span>
         </Link>
 
         <GlassCard className="p-8">
           <Tabs value={mode} onValueChange={(v) => setMode(v as "signin" | "signup")}>
-            <TabsList className="grid w-full grid-cols-2 mb-6 glass">
+            <TabsList className="grid w-full grid-cols-2 mb-6">
               <TabsTrigger value="signin">Sign in</TabsTrigger>
               <TabsTrigger value="signup">Register</TabsTrigger>
             </TabsList>
@@ -134,7 +139,7 @@ function AuthPage() {
               <Button
                 type="submit"
                 disabled={loading}
-                className="w-full h-11 bg-[image:var(--gradient-primary)] text-primary-foreground font-semibold hover:opacity-95 hover:shadow-[var(--shadow-glow-strong)] transition-all"
+                className="w-full h-11 bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all"
               >
                 {loading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -150,7 +155,7 @@ function AuthPage() {
 
         <p className="text-center text-sm text-muted-foreground mt-6">
           <Link to="/" className="hover:text-foreground">
-            ← Back to home
+            ← Back
           </Link>
         </p>
       </div>

@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Home, Upload, History, User, Settings, LogOut, Sparkles, Menu, X } from "lucide-react";
+import { Home, Upload, History, User, Settings, LogOut, Menu, X, Radio } from "lucide-react";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -9,6 +9,7 @@ import { toast } from "sonner";
 const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: Home },
   { to: "/upload", label: "Upload", icon: Upload },
+  { to: "/live", label: "Live", icon: Radio },
   { to: "/history", label: "History", icon: History },
   { to: "/profile", label: "Profile", icon: User },
   { to: "/settings", label: "Settings", icon: Settings },
@@ -27,16 +28,27 @@ export function AppShell() {
     navigate({ to: "/auth", replace: true });
   }
 
+  const Logo = (
+    <>
+      <div className="w-9 h-9 rounded-full bg-foreground grid place-items-center">
+        <div className="w-2.5 h-2.5 rounded-full bg-background" />
+      </div>
+      <div>
+        <div className="font-display font-bold text-lg leading-tight">
+          check<span className="italic font-light">vibe</span>
+        </div>
+        <div className="text-[10px] text-muted-foreground uppercase tracking-widest">
+          AI Genre Lab
+        </div>
+      </div>
+    </>
+  );
+
   return (
     <div className="min-h-screen flex">
       {/* Mobile top bar */}
       <header className="lg:hidden fixed top-0 inset-x-0 z-40 glass-strong flex items-center justify-between px-4 h-14">
-        <Link to="/dashboard" className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-[image:var(--gradient-primary)] grid place-items-center">
-            <Sparkles className="w-4 h-4 text-primary-foreground" />
-          </div>
-          <span className="font-display font-semibold">Sonogram</span>
-        </Link>
+        <Link to="/dashboard" className="flex items-center gap-2">{Logo}</Link>
         <button
           onClick={() => setOpen((o) => !o)}
           className="w-9 h-9 rounded-lg glass grid place-items-center"
@@ -54,17 +66,7 @@ export function AppShell() {
           open ? "translate-x-0" : "-translate-x-full",
         )}
       >
-        <Link to="/dashboard" className="flex items-center gap-2 mb-8">
-          <div className="w-10 h-10 rounded-xl bg-[image:var(--gradient-primary)] grid place-items-center glow">
-            <Sparkles className="w-5 h-5 text-primary-foreground" />
-          </div>
-          <div>
-            <div className="font-display font-bold text-lg leading-tight">Sonogram</div>
-            <div className="text-[10px] text-muted-foreground uppercase tracking-widest">
-              AI Genre Lab
-            </div>
-          </div>
-        </Link>
+        <Link to="/dashboard" className="flex items-center gap-3 mb-8">{Logo}</Link>
 
         <nav className="flex-1 space-y-1">
           {NAV.map(({ to, label, icon: Icon }) => (
@@ -73,8 +75,8 @@ export function AppShell() {
               to={to}
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all",
-                "text-muted-foreground hover:text-foreground hover:bg-white/5",
-                "data-[status=active]:text-foreground data-[status=active]:bg-[image:var(--gradient-primary)] data-[status=active]:shadow-[var(--shadow-glow)]",
+                "text-muted-foreground hover:text-foreground hover:bg-foreground/5",
+                "data-[status=active]:text-background data-[status=active]:bg-foreground",
               )}
               activeOptions={{ exact: to === "/dashboard" }}
             >

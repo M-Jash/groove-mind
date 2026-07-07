@@ -51,7 +51,7 @@ function Settings() {
       <GlassCard>
         <h2 className="font-display text-lg font-semibold mb-1">Prediction backend</h2>
         <p className="text-sm text-muted-foreground mb-4">
-          Sonogram is currently using a built-in demo classifier. Connect your own hosted FastAPI +
+          CheckVibe is currently using a built-in demo classifier. Connect your own hosted FastAPI +
           scikit-learn / librosa service to power real predictions.
         </p>
         <div className="glass rounded-xl p-4 text-sm text-muted-foreground font-mono">
