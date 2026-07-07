@@ -22,11 +22,7 @@ export function Waveform({ peaks, height = 120, className, color }: WaveformProp
     if (!ctx) return;
     ctx.scale(dpr, dpr);
     ctx.clearRect(0, 0, w, h);
-
-    const gradient = ctx.createLinearGradient(0, 0, w, 0);
-    gradient.addColorStop(0, color ?? "oklch(0.7 0.22 305)");
-    gradient.addColorStop(1, "oklch(0.78 0.2 340)");
-    ctx.fillStyle = gradient;
+    ctx.fillStyle = color ?? "oklch(0.18 0.005 90)";
 
     const barWidth = Math.max(1.5, w / peaks.length - 1);
     const gap = 1;

@@ -78,16 +78,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sonogram — AI Music Genre Classifier" },
+      { title: "CheckVibe — AI Music Genre Classifier" },
       {
         name: "description",
         content:
-          "Upload MP3 or WAV files and instantly discover their genre with AI-powered analysis and waveform visualization.",
+          "CheckVibe listens to any track — uploaded, played through your speakers, or captured live — and predicts its genre in real time.",
       },
-      { property: "og:title", content: "Sonogram — AI Music Genre Classifier" },
+      { property: "og:title", content: "CheckVibe — AI Music Genre Classifier" },
       {
         property: "og:description",
-        content: "Instant AI-powered music genre classification with waveform visualization.",
+        content: "Live and file-based AI music genre classification.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -126,7 +126,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
-      <Toaster theme="dark" position="top-center" richColors />
+      <Toaster theme="light" position="top-center" richColors />
     </QueryClientProvider>
   );
 }

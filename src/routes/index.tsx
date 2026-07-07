@@ -1,134 +1,70 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Sparkles, Upload, Waves, History, Zap, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { GlassCard } from "@/components/GlassCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Sonogram — AI Music Genre Classifier" },
+      { title: "CheckVibe — AI Music Genre Classifier" },
       {
         name: "description",
         content:
-          "Upload any track and let Sonogram's AI reveal its genre in seconds, with confidence scores and a beautiful waveform view.",
+          "Press start and let CheckVibe listen — uploaded tracks, laptop speakers, or the microphone.",
       },
-      { property: "og:title", content: "Sonogram — AI Music Genre Classifier" },
+      { property: "og:title", content: "CheckVibe" },
       {
         property: "og:description",
-        content: "Instant AI-powered music genre classification with waveform visualization.",
+        content: "AI genre classification from files, system audio, or live mic.",
       },
       { property: "og:type", content: "website" },
     ],
   }),
-  component: Landing,
+  component: Welcome,
 });
 
-function Landing() {
+function Welcome() {
   return (
-    <div className="min-h-screen">
-      {/* Nav */}
-      <header className="sticky top-0 z-30 glass-strong">
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 h-16">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-[image:var(--gradient-primary)] grid place-items-center glow">
-              <Sparkles className="w-4 h-4 text-primary-foreground" />
-            </div>
-            <span className="font-display font-bold text-xl">Sonogram</span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <Button variant="ghost" asChild>
-              <Link to="/auth">Sign in</Link>
-            </Button>
-            <Button
-              asChild
-              className="bg-[image:var(--gradient-primary)] text-primary-foreground hover:opacity-95 hover:shadow-[var(--shadow-glow)]"
-            >
-              <Link to="/auth">Get started</Link>
-            </Button>
-          </div>
-        </div>
-      </header>
+    <main className="min-h-screen flex flex-col items-center justify-between px-6 py-10">
+      <div className="text-xs uppercase tracking-[0.4em] text-muted-foreground">
+        Music · Genre · AI
+      </div>
 
-      {/* Hero */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pt-16 sm:pt-24 pb-20 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs uppercase tracking-widest text-muted-foreground mb-6">
-          <Zap className="w-3.5 h-3.5" /> AI-powered genre detection
-        </div>
-        <h1 className="font-display font-bold text-5xl sm:text-6xl lg:text-7xl leading-[1.05] tracking-tight mb-6">
-          Hear a track.
-          <br />
-          <span className="gradient-text">Know its genre.</span>
+      <div className="flex-1 w-full flex flex-col items-center justify-center gap-16 -mt-6">
+        <h1 className="font-display font-bold text-center leading-[0.9] tracking-tight text-[18vw] sm:text-[14vw] lg:text-[11rem]">
+          check<span className="italic font-light">vibe</span>
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-          Drop an MP3 or WAV and Sonogram analyzes the waveform, then predicts the genre with a
-          confidence score — in seconds.
-        </p>
-        <div className="flex items-center justify-center gap-3">
-          <Button
-            asChild
-            size="lg"
-            className="h-12 px-6 bg-[image:var(--gradient-primary)] text-primary-foreground font-semibold hover:opacity-95 hover:shadow-[var(--shadow-glow-strong)] transition-all animate-pulse-glow"
-          >
-            <Link to="/auth">
-              Try it free <ArrowRight className="w-4 h-4 ml-1" />
-            </Link>
-          </Button>
-          <Button asChild size="lg" variant="ghost" className="h-12 px-6 glass">
-            <a href="#features">See features</a>
-          </Button>
-        </div>
 
-        {/* Fake waveform */}
-        <div className="mt-16 glass-strong rounded-3xl p-6 sm:p-10 relative overflow-hidden">
-          <div className="flex items-end justify-center gap-1 h-40 sm:h-56">
-            {Array.from({ length: 60 }).map((_, i) => {
-              const h = 20 + Math.abs(Math.sin(i * 0.4)) * 80 + Math.abs(Math.cos(i * 0.7)) * 40;
-              return (
-                <div
-                  key={i}
-                  className="w-1.5 sm:w-2 rounded-full bg-[image:var(--gradient-primary)] animate-float"
-                  style={{ height: `${h}%`, animationDelay: `${i * 0.05}s` }}
-                />
-              );
-            })}
+        <Link
+          to="/auth"
+          aria-label="Start"
+          className="group relative w-56 h-56 sm:w-72 sm:h-72 rounded-full grid place-items-center focus:outline-none focus-visible:ring-4 focus-visible:ring-foreground/30"
+        >
+          {/* CD outer ring */}
+          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,_oklch(0.18_0.005_90)_0%,_oklch(0.28_0.005_90)_42%,_oklch(0.12_0.005_90)_43%,_oklch(0.28_0.005_90)_60%,_oklch(0.18_0.005_90)_100%)] shadow-[0_20px_60px_-15px_oklch(0_0_0/60%)] animate-spin-slow group-hover:[animation-duration:4s] transition-all" />
+          {/* Concentric grooves */}
+          <div className="absolute inset-6 rounded-full border border-white/5" />
+          <div className="absolute inset-12 rounded-full border border-white/5" />
+          <div className="absolute inset-20 rounded-full border border-white/5" />
+          {/* Reflective sheen */}
+          <div className="absolute inset-0 rounded-full bg-[conic-gradient(from_0deg,_transparent_0deg,_oklch(1_0_0/8%)_40deg,_transparent_80deg,_transparent_180deg,_oklch(1_0_0/6%)_220deg,_transparent_260deg)] animate-spin-slow pointer-events-none" />
+          {/* Center hub */}
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-background grid place-items-center shadow-inner">
+            <div className="absolute inset-3 rounded-full border border-foreground/10" />
+            <span className="font-display font-bold tracking-[0.2em] text-sm sm:text-base">
+              START
+            </span>
           </div>
-        </div>
-      </section>
+          {/* Pinhole */}
+          <div className="absolute w-3 h-3 rounded-full bg-background border border-foreground/20" />
+        </Link>
 
-      {/* Features */}
-      <section id="features" className="max-w-6xl mx-auto px-4 sm:px-6 pb-24">
-        <div className="grid md:grid-cols-3 gap-5">
-          {[
-            {
-              icon: Upload,
-              title: "Drop any track",
-              body: "MP3 or WAV, up to 20 MB. No account needed to try the demo.",
-            },
-            {
-              icon: Waves,
-              title: "See the waveform",
-              body: "A rendered visualization of every peak in your audio.",
-            },
-            {
-              icon: History,
-              title: "Track your history",
-              body: "Every prediction is saved to your private dashboard.",
-            },
-          ].map(({ icon: Icon, title, body }) => (
-            <GlassCard key={title} className="hover:shadow-[var(--shadow-glow)] hover:-translate-y-1">
-              <div className="w-11 h-11 rounded-xl bg-[image:var(--gradient-primary)] grid place-items-center mb-4">
-                <Icon className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <h3 className="font-display font-semibold text-lg mb-1">{title}</h3>
-              <p className="text-sm text-muted-foreground">{body}</p>
-            </GlassCard>
-          ))}
-        </div>
-      </section>
+        <p className="text-sm text-muted-foreground max-w-sm text-center">
+          Press start to sign in and begin classifying music from files, your laptop speakers, or the
+          microphone.
+        </p>
+      </div>
 
-      <footer className="border-t border-white/5 py-8 text-center text-sm text-muted-foreground">
-        © {new Date().getFullYear()} Sonogram
+      <footer className="text-xs text-muted-foreground">
+        © {new Date().getFullYear()} CheckVibe
       </footer>
-    </div>
+    </main>
   );
 }
