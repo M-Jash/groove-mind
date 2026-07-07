@@ -14,7 +14,69 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      predictions: {
+        Row: {
+          all_scores: Json
+          confidence: number
+          created_at: string
+          duration_seconds: number | null
+          file_name: string
+          file_size: number
+          id: string
+          top_genre: string
+          user_id: string
+          waveform_peaks: Json | null
+        }
+        Insert: {
+          all_scores?: Json
+          confidence: number
+          created_at?: string
+          duration_seconds?: number | null
+          file_name: string
+          file_size: number
+          id?: string
+          top_genre: string
+          user_id: string
+          waveform_peaks?: Json | null
+        }
+        Update: {
+          all_scores?: Json
+          confidence?: number
+          created_at?: string
+          duration_seconds?: number | null
+          file_name?: string
+          file_size?: number
+          id?: string
+          top_genre?: string
+          user_id?: string
+          waveform_peaks?: Json | null
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
