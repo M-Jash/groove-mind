@@ -79,19 +79,24 @@ function Dashboard() {
           </div>
           <div className="font-display text-4xl font-bold">{stats.top?.genre ?? "—"}</div>
         </GlassCard>
-        <GlassCard className="bg-[image:var(--gradient-primary)] border-transparent">
-          <div className="text-xs uppercase tracking-widest text-primary-foreground/80 mb-2">
+        <GlassCard className="bg-foreground border-transparent text-background">
+          <div className="text-xs uppercase tracking-widest text-background/70 mb-2">
             Ready to classify?
           </div>
-          <Button
-            asChild
-            variant="ghost"
-            className="p-0 h-auto text-primary-foreground hover:bg-transparent hover:text-primary-foreground"
-          >
-            <Link to="/upload" className="font-display text-2xl font-bold flex items-center gap-2">
+          <div className="flex flex-col gap-2">
+            <Link
+              to="/upload"
+              className="font-display text-2xl font-bold flex items-center gap-2 hover:opacity-80"
+            >
               Upload a track <ArrowRight className="w-5 h-5" />
             </Link>
-          </Button>
+            <Link
+              to="/live"
+              className="text-sm flex items-center gap-2 opacity-80 hover:opacity-100"
+            >
+              Or listen live → mic & system audio
+            </Link>
+          </div>
         </GlassCard>
       </div>
 
