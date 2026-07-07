@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /auth
+Disallow: /dashboard
+Disallow: /upload
+Disallow: /history
+Disallow: /profile
+Disallow: /settings
+Disallow: /results
