@@ -25,6 +25,9 @@ function LivePage() {
   } | null>(null);
   const [saving, setSaving] = useState(false);
   const [elapsed, setElapsed] = useState(0);
+  const [trackTitle, setTrackTitle] = useState("");
+  const [movieName, setMovieName] = useState("");
+
 
   const audioCtxRef = useRef<AudioContext | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
