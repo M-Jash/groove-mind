@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
+import landingBg from "@/assets/landing-bg.jpg.asset.json";
 
-const BG_URL = "https://pin.it/2ogU6RSnv";
+const BG_URL = landingBg.url;
+
 
 
 export const Route = createFileRoute("/")({
@@ -42,7 +44,12 @@ function Welcome() {
 
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-between px-6 py-10">
+    <main className="relative min-h-screen flex flex-col items-center justify-between px-6 py-10">
+      <div
+        aria-hidden
+        className="fixed inset-0 -z-10 bg-[oklch(0.95_0.003_90/72%)] backdrop-blur-[1px]"
+      />
+
       <div className="text-xs uppercase tracking-[0.4em] text-muted-foreground">
         Music · Genre · AI
       </div>
