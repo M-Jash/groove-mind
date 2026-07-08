@@ -37,7 +37,10 @@ function UploadPage() {
     if (f.size > MAX_SIZE) return toast.error("File is too large (20 MB max)");
     setFile(f);
     setPeaks([]);
+    setMeta(null);
     setAnalyzing(true);
+    // Kick off metadata read in parallel — non-blocking
+    void readAudioMetadata(f).then(setMeta);
     try {
       const res = await analyzeAudio(f, 220);
       setPeaks(res.peaks);
@@ -49,6 +52,7 @@ function UploadPage() {
       setAnalyzing(false);
     }
   }
+
 
   async function handlePredict() {
     if (!file || peaks.length === 0) return;
