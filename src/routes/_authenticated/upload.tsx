@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button";
 import { UploadCloud, Music, Loader2, Sparkles } from "lucide-react";
 import { analyzeAudio } from "@/lib/audio";
 import { mockPredict } from "@/lib/genres";
+import { readAudioMetadata, type TrackMeta } from "@/lib/metadata";
 import { toast } from "sonner";
+
 
 export const Route = createFileRoute("/_authenticated/upload")({
   component: UploadPage,
