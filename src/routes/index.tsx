@@ -1,4 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+
+const BG_URL = "https://pin.it/2ogU6RSnv";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
