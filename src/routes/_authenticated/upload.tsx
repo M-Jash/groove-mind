@@ -7,7 +7,9 @@ import { Button } from "@/components/ui/button";
 import { UploadCloud, Music, Loader2, Sparkles } from "lucide-react";
 import { analyzeAudio } from "@/lib/audio";
 import { mockPredict } from "@/lib/genres";
+import { readAudioMetadata, type TrackMeta } from "@/lib/metadata";
 import { toast } from "sonner";
+
 
 export const Route = createFileRoute("/_authenticated/upload")({
   component: UploadPage,
@@ -20,11 +22,13 @@ function UploadPage() {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
+  const [meta, setMeta] = useState<TrackMeta | null>(null);
   const [peaks, setPeaks] = useState<number[]>([]);
   const [duration, setDuration] = useState(0);
   const [analyzing, setAnalyzing] = useState(false);
   const [predicting, setPredicting] = useState(false);
   const [drag, setDrag] = useState(false);
+
 
   async function handleFile(f: File) {
     if (!ACCEPTED.includes(f.type) && !/\.(mp3|wav)$/i.test(f.name)) {
@@ -33,7 +37,10 @@ function UploadPage() {
     if (f.size > MAX_SIZE) return toast.error("File is too large (20 MB max)");
     setFile(f);
     setPeaks([]);
+    setMeta(null);
     setAnalyzing(true);
+    // Kick off metadata read in parallel — non-blocking
+    void readAudioMetadata(f).then(setMeta);
     try {
       const res = await analyzeAudio(f, 220);
       setPeaks(res.peaks);
@@ -45,6 +52,7 @@ function UploadPage() {
       setAnalyzing(false);
     }
   }
+
 
   async function handlePredict() {
     if (!file || peaks.length === 0) return;
@@ -128,13 +136,26 @@ function UploadPage() {
               <Music className="w-5 h-5 text-primary" />
             </div>
             <div className="min-w-0 flex-1">
-              <div className="font-medium truncate">{file.name}</div>
-              <div className="text-xs text-muted-foreground">
+              <div className="font-medium truncate">
+                {meta?.title || file.name}
+              </div>
+              <div className="text-xs text-muted-foreground truncate">
+                {meta?.artist && <span>{meta.artist}</span>}
+                {meta?.album && (
+                  <>
+                    {meta.artist && " · "}
+                    <span className="italic">from “{meta.album}”</span>
+                  </>
+                )}
+              </div>
+              <div className="text-xs text-muted-foreground mt-0.5">
                 {(file.size / 1024 / 1024).toFixed(2)} MB
                 {duration > 0 && ` · ${duration.toFixed(1)}s`}
+                {meta?.year && ` · ${meta.year}`}
               </div>
             </div>
           </div>
+
 
           <div className="glass rounded-xl p-4 mb-5">
             {analyzing ? (

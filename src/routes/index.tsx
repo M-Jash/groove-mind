@@ -1,4 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
+
+const BG_URL = "https://pin.it/2ogU6RSnv";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,6 +25,22 @@ export const Route = createFileRoute("/")({
 });
 
 function Welcome() {
+  useEffect(() => {
+    const targets = [document.documentElement, document.body];
+    const prev = targets.map((el) => el.getAttribute("style") ?? "");
+    const bg = `url("${BG_URL}") center center / cover no-repeat fixed`;
+    targets.forEach((el) => {
+      el.style.background = bg;
+    });
+    return () => {
+      targets.forEach((el, i) => {
+        if (prev[i]) el.setAttribute("style", prev[i]);
+        else el.removeAttribute("style");
+      });
+    };
+  }, []);
+
+
   return (
     <main className="min-h-screen flex flex-col items-center justify-between px-6 py-10">
       <div className="text-xs uppercase tracking-[0.4em] text-muted-foreground">
