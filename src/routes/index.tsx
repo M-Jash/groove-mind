@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
+import landingBg from "@/assets/landing-bg.jpg.asset.json";
 
-const BG_URL = "https://pin.it/2ogU6RSnv";
+const BG_URL = landingBg.url;
+
 
 
 export const Route = createFileRoute("/")({
