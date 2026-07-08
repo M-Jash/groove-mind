@@ -22,11 +22,13 @@ function UploadPage() {
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
+  const [meta, setMeta] = useState<TrackMeta | null>(null);
   const [peaks, setPeaks] = useState<number[]>([]);
   const [duration, setDuration] = useState(0);
   const [analyzing, setAnalyzing] = useState(false);
   const [predicting, setPredicting] = useState(false);
   const [drag, setDrag] = useState(false);
+
 
   async function handleFile(f: File) {
     if (!ACCEPTED.includes(f.type) && !/\.(mp3|wav)$/i.test(f.name)) {
