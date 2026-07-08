@@ -147,7 +147,13 @@ function LivePage() {
       const { data: userData } = await supabase.auth.getUser();
       const uid = userData.user?.id;
       if (!uid) throw new Error("Not signed in");
-      const label = `Live · ${source === "mic" ? "microphone" : "system audio"} · ${new Date().toLocaleString()}`;
+      const parts = [
+        trackTitle.trim() || `Live · ${source === "mic" ? "microphone" : "system audio"}`,
+        movieName.trim() && `from “${movieName.trim()}”`,
+        new Date().toLocaleString(),
+      ].filter(Boolean);
+      const label = parts.join(" · ");
+
       const { error } = await supabase.from("predictions").insert({
         user_id: uid,
         file_name: label,
