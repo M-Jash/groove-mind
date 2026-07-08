@@ -136,13 +136,26 @@ function UploadPage() {
               <Music className="w-5 h-5 text-primary" />
             </div>
             <div className="min-w-0 flex-1">
-              <div className="font-medium truncate">{file.name}</div>
-              <div className="text-xs text-muted-foreground">
+              <div className="font-medium truncate">
+                {meta?.title || file.name}
+              </div>
+              <div className="text-xs text-muted-foreground truncate">
+                {meta?.artist && <span>{meta.artist}</span>}
+                {meta?.album && (
+                  <>
+                    {meta.artist && " · "}
+                    <span className="italic">from “{meta.album}”</span>
+                  </>
+                )}
+              </div>
+              <div className="text-xs text-muted-foreground mt-0.5">
                 {(file.size / 1024 / 1024).toFixed(2)} MB
                 {duration > 0 && ` · ${duration.toFixed(1)}s`}
+                {meta?.year && ` · ${meta.year}`}
               </div>
             </div>
           </div>
+
 
           <div className="glass rounded-xl p-4 mb-5">
             {analyzing ? (
