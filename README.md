@@ -47,7 +47,7 @@ groove-mind/
 Clone the repository
 
 ```bash
-git clone https://github.com/jash420/groove-mind.git
+git clone https://github.com/M-Jash/groove-mind.git
 ```
 
 Move into the project directory
@@ -117,7 +117,7 @@ Add screenshots of the application here.
 
 **Jashwanth Madam**
 
-GitHub: https://github.com/jash420
+GitHub: https://github.com/M-Jash
 
 ---
 
