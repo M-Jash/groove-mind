@@ -298,41 +298,6 @@ function LivePage() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
-          <label className="block">
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              Song title
-            </span>
-            <input
-              type="text"
-              value={trackTitle}
-              onChange={(e) => setTrackTitle(e.target.value)}
-              placeholder="e.g. Kesariya"
-              className="mt-1 w-full h-10 px-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:border-foreground/40 outline-none text-sm"
-            />
-          </label>
-          <label className="block">
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              Movie / album (optional)
-            </span>
-            <input
-              type="text"
-              value={movieName}
-              onChange={(e) => setMovieName(e.target.value)}
-              placeholder="e.g. Brahmāstra"
-              className="mt-1 w-full h-10 px-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:border-foreground/40 outline-none text-sm"
-            />
-          </label>
-        </div>
-        {(trackTitle || movieName) && (
-          <div className="text-sm mb-4">
-            <span className="text-muted-foreground">Now playing: </span>
-            <span className="font-medium">{trackTitle || "Untitled"}</span>
-            {movieName && (
-              <span className="italic text-muted-foreground"> — from “{movieName}”</span>
-            )}
-          </div>
-        )}
 
 
 
