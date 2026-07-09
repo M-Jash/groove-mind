@@ -1,8 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
-import landingBg from "@/assets/landing-bg.jpg.asset.json";
 
-const BG_URL = landingBg.url;
 
 
 
@@ -30,7 +28,8 @@ function Welcome() {
   useEffect(() => {
     const targets = [document.documentElement, document.body];
     const prev = targets.map((el) => el.getAttribute("style") ?? "");
-    const bg = `url("${BG_URL}") center center / cover no-repeat fixed`;
+    const bg = `url("/download(30).jpg") center center / cover no-repeat fixed`;
+
     targets.forEach((el) => {
       el.style.background = bg;
     });
@@ -44,11 +43,16 @@ function Welcome() {
 
 
   return (
-    <main className="relative min-h-screen flex flex-col items-center justify-between px-6 py-10">
-      <div
-        aria-hidden
-        className="fixed inset-0 -z-10 bg-[oklch(0.95_0.003_90/72%)] backdrop-blur-[1px]"
-      />
+  <main
+  className="relative min-h-screen flex flex-col items-center justify-between px-6 py-10 bg-cover bg-center bg-fixed"
+  style={{
+    backgroundImage: "url('/download(30).jpg')",
+  }}
+>
+   <div
+  aria-hidden
+  className="fixed inset-0 -z-10 bg-black/40"
+/>
 
       <div className="text-xs uppercase tracking-[0.4em] text-muted-foreground">
         Music · Genre · AI
