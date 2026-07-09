@@ -25,8 +25,8 @@ function LivePage() {
   } | null>(null);
   const [saving, setSaving] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const [trackTitle, setTrackTitle] = useState("");
-  const [movieName, setMovieName] = useState("");
+
+
 
 
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -147,12 +147,8 @@ function LivePage() {
       const { data: userData } = await supabase.auth.getUser();
       const uid = userData.user?.id;
       if (!uid) throw new Error("Not signed in");
-      const parts = [
-        trackTitle.trim() || `Live · ${source === "mic" ? "microphone" : "system audio"}`,
-        movieName.trim() && `from “${movieName.trim()}”`,
-        new Date().toLocaleString(),
-      ].filter(Boolean);
-      const label = parts.join(" · ");
+      const label = `Live · ${source === "mic" ? "microphone" : "system audio"} · ${new Date().toLocaleString()}`;
+
 
       const { error } = await supabase.from("predictions").insert({
         user_id: uid,
@@ -298,41 +294,6 @@ function LivePage() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
-          <label className="block">
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              Song title
-            </span>
-            <input
-              type="text"
-              value={trackTitle}
-              onChange={(e) => setTrackTitle(e.target.value)}
-              placeholder="e.g. Kesariya"
-              className="mt-1 w-full h-10 px-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:border-foreground/40 outline-none text-sm"
-            />
-          </label>
-          <label className="block">
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              Movie / album (optional)
-            </span>
-            <input
-              type="text"
-              value={movieName}
-              onChange={(e) => setMovieName(e.target.value)}
-              placeholder="e.g. Brahmāstra"
-              className="mt-1 w-full h-10 px-3 rounded-lg bg-foreground/5 border border-foreground/10 focus:border-foreground/40 outline-none text-sm"
-            />
-          </label>
-        </div>
-        {(trackTitle || movieName) && (
-          <div className="text-sm mb-4">
-            <span className="text-muted-foreground">Now playing: </span>
-            <span className="font-medium">{trackTitle || "Untitled"}</span>
-            {movieName && (
-              <span className="italic text-muted-foreground"> — from “{movieName}”</span>
-            )}
-          </div>
-        )}
 
 
 
