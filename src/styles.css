@@ -109,16 +109,20 @@
   }
   html,
   body {
-    background: var(--gradient-hero);
-    background-attachment: fixed;
+    /* CHANGED: Swapped from fixed gradient-hero to solid background variable. */
+    /* This lets routes dynamically overwrite background variables cleanly. */
+    background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1,
-  h2,
-  h3,
-  h4 {
+  
+  /* Fallback app-wide global layout gradient style */
+  body:not(:has(main[style*="download"])) {
+    background: var(--gradient-hero) fixed;
+  }
+
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
@@ -167,3 +171,8 @@
 .animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
 .animate-spin-slow { animation: spin-slow 12s linear infinite; }
 .animate-spin-slower { animation: spin-slow 30s linear infinite; }
+
+/* ADDED: Explicit helper for the CD hover acceleration feature */
+.group:hover .animate-spin-slow {
+  animation-duration: 4s !important;
+}
