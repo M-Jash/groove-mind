@@ -25,8 +25,8 @@ function LivePage() {
   } | null>(null);
   const [saving, setSaving] = useState(false);
   const [elapsed, setElapsed] = useState(0);
-  const [trackTitle, setTrackTitle] = useState("");
-  const [movieName, setMovieName] = useState("");
+
+
 
 
   const audioCtxRef = useRef<AudioContext | null>(null);
@@ -147,12 +147,8 @@ function LivePage() {
       const { data: userData } = await supabase.auth.getUser();
       const uid = userData.user?.id;
       if (!uid) throw new Error("Not signed in");
-      const parts = [
-        trackTitle.trim() || `Live · ${source === "mic" ? "microphone" : "system audio"}`,
-        movieName.trim() && `from “${movieName.trim()}”`,
-        new Date().toLocaleString(),
-      ].filter(Boolean);
-      const label = parts.join(" · ");
+      const label = `Live · ${source === "mic" ? "microphone" : "system audio"} · ${new Date().toLocaleString()}`;
+
 
       const { error } = await supabase.from("predictions").insert({
         user_id: uid,
