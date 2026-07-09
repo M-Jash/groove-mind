@@ -90,12 +90,6 @@ function Dashboard() {
             >
               Upload a track <ArrowRight className="w-5 h-5" />
             </Link>
-            <Link
-              to="/live"
-              className="text-sm flex items-center gap-2 opacity-80 hover:opacity-100"
-            >
-              Or listen live → mic & system audio
-            </Link>
           </div>
         </GlassCard>
       </div>

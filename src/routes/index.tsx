@@ -13,12 +13,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Press start and let CheckVibe listen — uploaded tracks, laptop speakers, or the microphone.",
+          "Press start and let CheckVibe classify your uploaded tracks.",
       },
       { property: "og:title", content: "CheckVibe" },
       {
         property: "og:description",
-        content: "AI genre classification from files, system audio, or live mic.",
+        content: "AI genre classification from your music files.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -84,8 +84,7 @@ function Welcome() {
         </Link>
 
         <p className="text-sm text-muted-foreground max-w-sm text-center">
-          Press start to sign in and begin classifying music from files, your laptop speakers, or the
-          microphone.
+          Press start to sign in and begin classifying your music files.
         </p>
       </div>
 
