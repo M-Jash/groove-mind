@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Home, Upload, History, User, Settings, LogOut, Menu, X, Radio } from "lucide-react";
+import { Home, Upload, History, User, Settings, LogOut, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,6 @@ import { toast } from "sonner";
 const NAV = [
   { to: "/dashboard", label: "Dashboard", icon: Home },
   { to: "/upload", label: "Upload", icon: Upload },
-  { to: "/live", label: "Live", icon: Radio },
   { to: "/history", label: "History", icon: History },
   { to: "/profile", label: "Profile", icon: User },
   { to: "/settings", label: "Settings", icon: Settings },

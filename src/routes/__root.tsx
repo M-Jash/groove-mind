@@ -82,12 +82,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "CheckVibe listens to any track — uploaded, played through your speakers, or captured live — and predicts its genre in real time.",
+          "CheckVibe listens to your uploaded tracks and predicts their genre in real time.",
       },
       { property: "og:title", content: "CheckVibe — AI Music Genre Classifier" },
       {
         property: "og:description",
-        content: "Live and file-based AI music genre classification.",
+        content: "File-based AI music genre classification.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
