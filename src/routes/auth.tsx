@@ -70,7 +70,12 @@ function AuthPage() {
       const { data } = await supabase.auth.getSession();
       if (data.session) navigate({ to: "/dashboard", replace: true });
     } catch (err) {
-      const msg = err instanceof Error ? err.message : "Authentication failed";
+      const isNetworkError = err instanceof TypeError && /fetch/i.test(err.message);
+      const msg = isNetworkError
+        ? "Can't reach the server. Check your internet connection, or the Supabase project may be paused/unreachable."
+        : err instanceof Error
+          ? err.message
+          : "Authentication failed";
       toast.error(msg);
     } finally {
       setLoading(false);
