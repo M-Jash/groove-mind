@@ -1,3 +1,7 @@
+INTERNSHIP ID: CITS2924
+NAME : MADAM JASHWANTH 
+WEEKS : 8 
+PROJECT NAME : CHECK VIBE
 # 🎵 GrooveMind – AI Music Genre Prediction
 
 GrooveMind is a web-based Music Genre Prediction application that uses Machine Learning to classify audio tracks into different music genres. The application provides an intuitive interface where users can upload an audio file and receive the predicted genre instantly.
